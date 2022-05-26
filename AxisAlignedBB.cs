@@ -1,6 +1,6 @@
-﻿namespace SkyWing.Math; 
+﻿namespace SkyWing.Math;
 
-public class AxisAlignedBB{
+public class AxisAlignedBB {
 
 	public float MinX;
 	public float MinY;
@@ -9,22 +9,25 @@ public class AxisAlignedBB{
 	public float MaxY;
 	public float MaxZ;
 
-	public AxisAlignedBB(float MinX, float MinY, float MinZ, float MaxX, float MaxY, float MaxZ){
-		if(MinX > MaxX){
+	public AxisAlignedBB(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
+		if (MinX > MaxX) {
 			throw new ArgumentException("MinX MinX is larger than MaxX MaxX");
 		}
-		if(MinY > MaxY){
+
+		if (MinY > MaxY) {
 			throw new ArgumentException("MinY MinY is larger than MaxY MaxY");
 		}
-		if(MinZ > MaxZ){
+
+		if (MinZ > MaxZ) {
 			throw new ArgumentException("MinZ MinZ is larger than MaxZ MaxZ");
 		}
-		MinX = MinX;
-		MinY = MinY;
-		MinZ = MinZ;
-		MaxX = MaxX;
-		MaxY = MaxY;
-		MaxZ = MaxZ;
+
+		MinX = minX;
+		MinY = minY;
+		MinZ = minZ;
+		MaxX = maxX;
+		MaxY = maxY;
+		MaxZ = maxZ;
 	}
 
 	/*
@@ -32,7 +35,7 @@ public class AxisAlignedBB{
 	 * If each of X, Y && Z are positive, the relevant max bound will be increased. If negative, the relevant min
 	 * bound will be decreased.
 	 */
-	public AxisAlignedBB AddCoord(float x, float y, float z){
+	public AxisAlignedBB AddCoord(float x, float y, float z) {
 		var minX = MinX;
 		var minY = MinY;
 		var minZ = MinZ;
@@ -73,7 +76,7 @@ public class AxisAlignedBB{
 	/*
 	 * Outsets the bounds of this AxisAlignedBB by the specified X, Y && Z.
 	 */
-	public AxisAlignedBB Expand(float x, float y, float z){
+	public AxisAlignedBB Expand(float x, float y, float z) {
 		MinX -= x;
 		MinY -= y;
 		MinZ -= z;
@@ -94,7 +97,7 @@ public class AxisAlignedBB{
 	/*
 	 * Shifts this AxisAlignedBB by the given X, Y && Z.
 	 */
-	public AxisAlignedBB Offset(float x, float y, float z){
+	public AxisAlignedBB Offset(float x, float y, float z) {
 		MinX += x;
 		MinY += y;
 		MinZ += z;
@@ -115,7 +118,7 @@ public class AxisAlignedBB{
 	/*
 	 * Insets the bounds of this AxisAlignedBB by the specified X, Y && Z.
 	 */
-	public AxisAlignedBB Contract(float x, float y, float z){
+	public AxisAlignedBB Contract(float x, float y, float z) {
 		MinX += x;
 		MinY += y;
 		MinZ += z;
@@ -230,20 +233,23 @@ public class AxisAlignedBB{
 	}
 
 	public float CalculateXOffset(AxisAlignedBB bb, float x) {
-		if(bb.MaxY <= MinY || bb.MinY >= MaxY){
+		if (bb.MaxY <= MinY || bb.MinY >= MaxY) {
 			return x;
 		}
-		if(bb.MaxZ <= MinZ || bb.MinZ >= MaxZ){
+
+		if (bb.MaxZ <= MinZ || bb.MinZ >= MaxZ) {
 			return x;
 		}
-		if(x > 0 && bb.MaxX <= MinX){
+
+		if (x > 0 && bb.MaxX <= MinX) {
 			var x1 = MinX - bb.MaxX;
-			if(x1 < x){
+			if (x1 < x) {
 				x = x1;
 			}
-		}else if(x < 0 && bb.MinX >= MaxX){
+		}
+		else if (x < 0 && bb.MinX >= MaxX) {
 			var x2 = MaxX - bb.MinX;
-			if(x2 > x){
+			if (x2 > x) {
 				x = x2;
 			}
 		}
@@ -252,20 +258,23 @@ public class AxisAlignedBB{
 	}
 
 	public float CalculateYOffset(AxisAlignedBB bb, float y) {
-		if(bb.MaxX <= MinX || bb.MinX >= MaxX){
+		if (bb.MaxX <= MinX || bb.MinX >= MaxX) {
 			return y;
 		}
-		if(bb.MaxZ <= MinZ || bb.MinZ >= MaxZ){
+
+		if (bb.MaxZ <= MinZ || bb.MinZ >= MaxZ) {
 			return y;
 		}
-		if(y > 0 && bb.MaxY <= MinY){
+
+		if (y > 0 && bb.MaxY <= MinY) {
 			var y1 = MinY - bb.MaxY;
-			if(y1 < y){
+			if (y1 < y) {
 				y = y1;
 			}
-		}else if(y < 0 && bb.MinY >= MaxY){
+		}
+		else if (y < 0 && bb.MinY >= MaxY) {
 			var y2 = MaxY - bb.MinY;
-			if(y2 > y){
+			if (y2 > y) {
 				y = y2;
 			}
 		}
@@ -274,20 +283,23 @@ public class AxisAlignedBB{
 	}
 
 	public float CalculateZOffset(AxisAlignedBB bb, float z) {
-		if(bb.MaxX <= MinX || bb.MinX >= MaxX){
+		if (bb.MaxX <= MinX || bb.MinX >= MaxX) {
 			return z;
 		}
-		if(bb.MaxY <= MinY || bb.MinY >= MaxY){
+
+		if (bb.MaxY <= MinY || bb.MinY >= MaxY) {
 			return z;
 		}
-		if(z > 0 && bb.MaxZ <= MinZ){
+
+		if (z > 0 && bb.MaxZ <= MinZ) {
 			var z1 = MinZ - bb.MaxZ;
-			if(z1 < z){
+			if (z1 < z) {
 				z = z1;
 			}
-		}else if (z < 0 && bb.MinZ >= MaxZ){
+		}
+		else if (z < 0 && bb.MinZ >= MaxZ) {
 			var z2 = MaxZ - bb.MinZ;
-			if(z2 > z){
+			if (z2 > z) {
 				z = z2;
 			}
 		}
@@ -298,9 +310,9 @@ public class AxisAlignedBB{
 	/*
 	 * Returns whether any part of the specified AABB is inside (intersects with) this one.
 	 */
-	public bool IntersectsWith(AxisAlignedBB bb, float epsilon = 0.000001f){
-		if(bb.MaxX - MinX > epsilon && MaxX - bb.MinX > epsilon){
-			if(bb.MaxY - MinY > epsilon && MaxY - bb.MinY > epsilon){
+	public bool IntersectsWith(AxisAlignedBB bb, float epsilon = 0.000001f) {
+		if (bb.MaxX - MinX > epsilon && MaxX - bb.MinX > epsilon) {
+			if (bb.MaxY - MinY > epsilon && MaxY - bb.MinY > epsilon) {
 				return bb.MaxZ - MinZ > epsilon && MaxZ - bb.MinZ > epsilon;
 			}
 		}
@@ -312,10 +324,11 @@ public class AxisAlignedBB{
 	 * Returns whether the specified vector is within the bounds of this AABB on all axes.
 	 */
 	public bool IsVectorInside(Vector3 vector) {
-		if(vector.X <= MinX || vector.X >= MaxX){
+		if (vector.X <= MinX || vector.X >= MaxX) {
 			return false;
 		}
-		if(vector.Y <= MinY || vector.Y >= MaxY){
+
+		if (vector.Y <= MinY || vector.Y >= MaxY) {
 			return false;
 		}
 
@@ -329,11 +342,17 @@ public class AxisAlignedBB{
 		return (MaxX - MinX + MaxY - MinY + MaxZ - MinZ) / 3;
 	}
 
-	public float GetXLength() { return MaxX - MinX; }
+	public float GetXLength() {
+		return MaxX - MinX;
+	}
 
-	public float GetYLength() { return MaxY - MinY; }
+	public float GetYLength() {
+		return MaxY - MinY;
+	}
 
-	public float GetZLength() { return MaxZ - MinZ; }
+	public float GetZLength() {
+		return MaxZ - MinZ;
+	}
 
 	public bool IsCube(float epsilon = 0.000001f) {
 		var xLen = GetXLength();
@@ -370,8 +389,89 @@ public class AxisAlignedBB{
 		return vector.X >= MinX && vector.X <= MaxX && vector.Y >= MinY && vector.Y <= MaxY;
 	}
 
+	/**
+	 * Performs a ray-trace && calculates the point on the AABB's edge nearest the start position that the ray-trace
+	 * collided with. Returns a RayTraceResult with colliding vector closest to the start position.
+	 * Returns null if no colliding point was found.
+	 */
+	public RayTraceResult? CalculateIntercept(Vector3 pos1, Vector3 pos2) {
+		var v1 = pos1.GetIntermediateWithXValue(pos2, MinX);
+		var v2 = pos1.GetIntermediateWithXValue(pos2, MaxX);
+		var v3 = pos1.GetIntermediateWithYValue(pos2, MinY);
+		var v4 = pos1.GetIntermediateWithYValue(pos2, MaxY);
+		var v5 = pos1.GetIntermediateWithZValue(pos2, MinZ);
+		var v6 = pos1.GetIntermediateWithZValue(pos2, MaxZ);
+
+		if (v1 != null && !IsVectorInYZ(v1)) {
+			v1 = null;
+		}
+
+		if (v2 != null && !IsVectorInYZ(v2)) {
+			v2 = null;
+		}
+
+		if (v3 != null && !IsVectorInXZ(v3)) {
+			v3 = null;
+		}
+
+		if (v4 != null && !IsVectorInXZ(v4)) {
+			v4 = null;
+		}
+
+		if (v5 != null && !IsVectorInXY(v5)) {
+			v5 = null;
+		}
+
+		if (v6 != null && !IsVectorInXY(v6)) {
+			v6 = null;
+		}
+
+		Vector3? vector = null;
+		var distance = float.MaxValue;
+
+		foreach (var v in new[] {v1, v2, v3, v4, v5, v6}) {
+			if (v == null) continue;
+			var d = pos1.DistanceSquared(v);
+			if (!(d < distance)) continue;
+			vector = v;
+			distance = d;
+		}
+
+		if (vector == null) {
+			return null;
+		}
+
+		Direction f;
+
+		if (vector == v1) {
+			f = Direction.West;
+		}
+		else if (vector == v2) {
+			f = Direction.East;
+		}
+		else if (vector == v3) {
+			f = Direction.Down;
+		}
+		else if (vector == v4) {
+			f = Direction.Up;
+		}
+		else if (vector == v5) {
+			f = Direction.North;
+		}
+		else if (vector == v6) {
+			f = Direction.South;
+		}
+		else {
+			//TODO: This should never happen.
+			throw new Exception("No face found.");
+		}
+
+		return new RayTraceResult(this, f, vector);
+	}
+
 	public override string ToString() {
-		return "AxisAlignedBB(minX=" + MinX + ", minY=" + MinY + ", minZ=" + MinZ + ", maxX=" + MaxX + ", maxY=" + MaxY + ", maxZ=" + MaxZ + ")";
+		return "AxisAlignedBB(minX=" + MinX + ", minY=" + MinY + ", minZ=" + MinZ + ", maxX=" + MaxX + ", maxY=" +
+		       MaxY + ", maxZ=" + MaxZ + ")";
 	}
 
 	/*
@@ -380,7 +480,7 @@ public class AxisAlignedBB{
 	public static AxisAlignedBB One() {
 		return new AxisAlignedBB(0, 0, 0, 1, 1, 1);
 	}
-	
+
 	private AxisAlignedBB Clone() {
 		return new AxisAlignedBB(MinY, MinZ, MinX, MaxY, MaxZ, MaxX);
 	}

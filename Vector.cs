@@ -219,45 +219,47 @@ public class Vector3 {
 	public static Vector3 operator /(Vector3 a, float b) {
 		return new Vector3(a.X / b, a.Y / b, a.Z / b);
 	}
-	
+
 	public static Vector3 Zero() => new Vector3(0, 0, 0);
-	
+
 	public Vector3 Add(float x, float y, float z) {
 		return new Vector3(_x + x, _y + y, _z + z);
 	}
-	
+
 	public Vector3 Add(Vector3 v) {
 		return Add(v.X, v.Y, v.Z);
 	}
-	
+
 	public Vector3 Subtract(float x, float y, float z) {
 		return new Vector3(_x - x, _y - y, _z - z);
 	}
-	
+
 	public Vector3 Subtract(Vector3 v) {
 		return Subtract(v.X, v.Y, v.Z);
 	}
-	
+
 	public Vector3 Multiply(float v) {
 		return new Vector3(_x * v, _y * v, _z * v);
 	}
-	
+
 	public Vector3 Divide(float v) {
 		return new Vector3(_x / v, _y / v, _z / v);
 	}
-	
+
 	public Vector3 Ceiling() {
-		return new Vector3((float) System.Math.Ceiling(_x), (float) System.Math.Ceiling(_y), (float) System.Math.Ceiling(_z));
+		return new Vector3((float) System.Math.Ceiling(_x), (float) System.Math.Ceiling(_y),
+			(float) System.Math.Ceiling(_z));
 	}
-	
+
 	public Vector3 Floor() {
 		return new Vector3((float) System.Math.Floor(_x), (float) System.Math.Floor(_y), (float) System.Math.Floor(_z));
 	}
-	
+
 	public Vector3 Round(int precision = 2) {
-		return new Vector3((float) System.Math.Round(_x, precision), (float) System.Math.Round(_y, precision), (float) System.Math.Round(_z, precision));
+		return new Vector3((float) System.Math.Round(_x, precision), (float) System.Math.Round(_y, precision),
+			(float) System.Math.Round(_z, precision));
 	}
-	
+
 	public Vector3 Abs() {
 		return new Vector3(System.Math.Abs(_x), System.Math.Abs(_y), System.Math.Abs(_z));
 	}
@@ -273,11 +275,11 @@ public class Vector3 {
 			_ => this
 		};
 	}
-	
+
 	public Vector3 Down(int step = 1) {
 		return GetSide(Direction.Down, step);
 	}
-	
+
 	public Vector3 Up(int step = 1) {
 		return GetSide(Direction.Up, step);
 	}
@@ -285,54 +287,112 @@ public class Vector3 {
 	public Vector3 North(int step = 1) {
 		return GetSide(Direction.North, step);
 	}
-	
+
 	public Vector3 South(int step = 1) {
 		return GetSide(Direction.South, step);
 	}
-	
+
 	public Vector3 West(int step = 1) {
 		return GetSide(Direction.West, step);
 	}
-	
+
 	public Vector3 East(int step = 1) {
 		return GetSide(Direction.East, step);
 	}
-	
+
 	public float Distance(Vector3 pos) {
 		return (float) System.Math.Sqrt(DistanceSquared(pos));
 	}
-	
+
 	public float DistanceSquared(Vector3 pos) {
-		return (float) (System.Math.Pow(_x - pos.X, 2) + System.Math.Pow(_y - pos.Y, 2) + System.Math.Pow(_z - pos.Z, 2));
+		return (float) (System.Math.Pow(_x - pos.X, 2) + System.Math.Pow(_y - pos.Y, 2) +
+		                System.Math.Pow(_z - pos.Z, 2));
 	}
-	
+
 	public float Length() {
 		return (float) System.Math.Sqrt(LengthSquared());
 	}
-	
+
 	public float LengthSquared() {
 		return _x * _x + _y * _y + _z * _z;
 	}
-	
+
 	public Vector3 Normalize() {
 		var len = Length();
 		return len > 0 ? Divide(len) : Zero();
 	}
-	
+
 	public float Dot(Vector3 v) {
 		return _x * v.X + _y * v.Y + _z * v.Z;
 	}
-	
+
 	public Vector3 Cross(Vector3 v) {
 		return new Vector3(_y * v.Z - _z * v.Y, _z * v.X - _x * v.Z, _x * v.Y - _y * v.X);
 	}
-	
+
 	public override string ToString() {
 		return "Vector3(x=" + _x + ", y=" + _y + ", z=" + _z + ")";
 	}
-	
+
 	public bool Equals(Vector3 that) {
 		return _x.Equals(that.X) && _y.Equals(that.Y) && _z.Equals(that.Z);
+	}
+
+	/**
+	 * Returns a new vector with x value equal to the second parameter, along the line between this vector and the
+	 * passed in vector, or null if not possible.
+	 */
+	public Vector3? GetIntermediateWithXValue(Vector3 v, float x) {
+		var xDiff = v.X - X;
+		if ((xDiff * xDiff) < 0.0000001) {
+			return null;
+		}
+
+		var f = (x - X) / xDiff;
+
+		if (f < 0 || f > 1) {
+			return null;
+		}
+
+		return new Vector3(x, Y + (v.Y - Y) * f, Z + (v.Z - Z) * f);
+	}
+
+	/**
+	 * Returns a new vector with y value equal to the second parameter, along the line between this vector and the
+	 * passed in vector, or null if not possible.
+	 */
+	public Vector3? GetIntermediateWithYValue(Vector3 v, float y) {
+		var yDiff = v.Y - Y;
+		if ((yDiff * yDiff) < 0.0000001) {
+			return null;
+		}
+
+		var f = (y - Y) / yDiff;
+
+		if (f < 0 || f > 1) {
+			return null;
+		}
+
+		return new Vector3(X + (v.X - X) * f, y, Z + (v.Z - Z) * f);
+	}
+
+	/**
+	 * Returns a new vector with z value equal to the second parameter, along the line between this vector and the
+	 * passed in vector, or null if not possible.
+	 */
+	public Vector3? GetIntermediateWithZValue(Vector3 v, float z) {
+		var zDiff = v.Z - Z;
+		if ((zDiff * zDiff) < 0.0000001) {
+			return null;
+		}
+
+		var f = (z - z) / zDiff;
+
+		if (f < 0 || f > 1) {
+			return null;
+		}
+
+		return new Vector3(X + (v.X - X) * f, Y + (v.Y - Y) * f, z);
 	}
 
 	public static Vector3 MinComponents(Vector3 a) {
@@ -348,13 +408,14 @@ public class Vector3 {
 			y = System.Math.Min(y, v.Y);
 			z = System.Math.Min(z, v.Z);
 		}
+
 		return new Vector3(x, y, z);
 	}
-	
+
 	public static Vector3 MaxComponents(Vector3 a) {
 		return MaxComponents(a, Array.Empty<Vector3>());
 	}
-	
+
 	public static Vector3 MaxComponents(Vector3 a, IEnumerable<Vector3> vectors) {
 		var x = a.X;
 		var y = a.Y;
@@ -364,6 +425,7 @@ public class Vector3 {
 			y = System.Math.Max(y, v.Y);
 			z = System.Math.Max(z, v.Z);
 		}
+
 		return new Vector3(x, y, z);
 	}
 
@@ -376,8 +438,7 @@ public class Vector3 {
 			y += v.Y;
 			z += v.Z;
 		}
+
 		return new Vector3(x, y, z);
 	}
 }
-	
-	

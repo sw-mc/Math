@@ -261,6 +261,42 @@ public class Vector3 {
 	public Vector3 Abs() {
 		return new Vector3(System.Math.Abs(_x), System.Math.Abs(_y), System.Math.Abs(_z));
 	}
+
+	public Vector3 GetSide(Direction side, int step = 1) {
+		return side switch {
+			Direction.Down => new Vector3(_x, _y - step, _z),
+			Direction.Up => new Vector3(_x, _y + step, _z),
+			Direction.North => new Vector3(_x, _y, _z - step),
+			Direction.South => new Vector3(_x, _y, _z + step),
+			Direction.West => new Vector3(_x - step, _y, _z),
+			Direction.East => new Vector3(_x + step, _y, _z),
+			_ => this
+		};
+	}
+	
+	public Vector3 Down(int step = 1) {
+		return GetSide(Direction.Down, step);
+	}
+	
+	public Vector3 Up(int step = 1) {
+		return GetSide(Direction.Up, step);
+	}
+
+	public Vector3 North(int step = 1) {
+		return GetSide(Direction.North, step);
+	}
+	
+	public Vector3 South(int step = 1) {
+		return GetSide(Direction.South, step);
+	}
+	
+	public Vector3 West(int step = 1) {
+		return GetSide(Direction.West, step);
+	}
+	
+	public Vector3 East(int step = 1) {
+		return GetSide(Direction.East, step);
+	}
 	
 	public float Distance(Vector3 pos) {
 		return (float) System.Math.Sqrt(DistanceSquared(pos));

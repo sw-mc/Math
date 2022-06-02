@@ -6,4 +6,67 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Content Include=".git\COMMIT_EDITMSG" />
+      <Content Include=".git\config" />
+      <Content Include=".git\description" />
+      <Content Include=".git\FETCH_HEAD" />
+      <Content Include=".git\HEAD" />
+      <Content Include=".git\hooks\applypatch-msg.sample" />
+      <Content Include=".git\hooks\commit-msg.sample" />
+      <Content Include=".git\hooks\fsmonitor-watchman.sample" />
+      <Content Include=".git\hooks\post-update.sample" />
+      <Content Include=".git\hooks\pre-applypatch.sample" />
+      <Content Include=".git\hooks\pre-commit.sample" />
+      <Content Include=".git\hooks\pre-merge-commit.sample" />
+      <Content Include=".git\hooks\pre-push.sample" />
+      <Content Include=".git\hooks\pre-rebase.sample" />
+      <Content Include=".git\hooks\pre-receive.sample" />
+      <Content Include=".git\hooks\prepare-commit-msg.sample" />
+      <Content Include=".git\hooks\push-to-checkout.sample" />
+      <Content Include=".git\hooks\update.sample" />
+      <Content Include=".git\index" />
+      <Content Include=".git\info\exclude" />
+      <Content Include=".git\logs\HEAD" />
+      <Content Include=".git\logs\refs\heads\stable" />
+      <Content Include=".git\logs\refs\remotes\origin\HEAD" />
+      <Content Include=".git\logs\refs\remotes\origin\stable" />
+      <Content Include=".git\objects\03\0599e80b3547d18a14167d220a584335e2b892" />
+      <Content Include=".git\objects\03\ef95e5e650c3519c590e785e684e5ce3d526e6" />
+      <Content Include=".git\objects\12\03141adab6ceed9364f83a86bcad626acaf85d" />
+      <Content Include=".git\objects\34\5967800db12b5c9720d9b64429cd5de7f23ae5" />
+      <Content Include=".git\objects\44\3bbf03f724a518ff8e2f834ea217abace2eaff" />
+      <Content Include=".git\objects\4e\dd45aa647709b0ce5358c47a951c50e72e4066" />
+      <Content Include=".git\objects\5d\4b2816261465d1fbaccb8701a495fd0f0ca86c" />
+      <Content Include=".git\objects\5d\54139ddcec24c4835262d256f0b354b11f9e4f" />
+      <Content Include=".git\objects\5f\282702bb03ef11d7184d19c80927b47f919764" />
+      <Content Include=".git\objects\5f\284222f34b7ae776f9d6da9dfecde3a90b3d66" />
+      <Content Include=".git\objects\65\cd9ad8cecf4aaf5a6aaf984a63fe578e62d47b" />
+      <Content Include=".git\objects\7a\4b433094c1e0e31239583b4f591280916f3062" />
+      <Content Include=".git\objects\7b\9161ad3ba41e6f37d160bf07676ea4c17d5219" />
+      <Content Include=".git\objects\8a\b78efe2c33a58bc7272992a40fb55e2f924607" />
+      <Content Include=".git\objects\ad\b58cd4762190e99397011a0423c85b46ab93e1" />
+      <Content Include=".git\objects\af\83bc0254ed654dd6a34c9a49537697f3ca90e1" />
+      <Content Include=".git\objects\b1\25811ac1840c06aee3739714966cf787483ed1" />
+      <Content Include=".git\objects\b5\39cc4955e2d8a413e4ae70f681dec659108527" />
+      <Content Include=".git\objects\ca\2ec374366c58a03e51ccaae036d5f24504f6f6" />
+      <Content Include=".git\objects\cd\00d4c3a49d46b43506ef425c6707d3859dea81" />
+      <Content Include=".git\objects\cd\56c70de22e1be759623605a410350a1f7b5520" />
+      <Content Include=".git\objects\ce\b0f52b41af1ecc5a8160c95401d8580021f696" />
+      <Content Include=".git\objects\d8\09ef4dbd994d57462890b09b27c5fa29bbc908" />
+      <Content Include=".git\objects\e1\4e55165d326d599e56387bdee405b5ca458656" />
+      <Content Include=".git\objects\eb\2460e910fa21c0fb88747ca553b619fb62b722" />
+      <Content Include=".git\objects\pack\pack-1a5c5236dc4dacfc7e45220af6ad2aecf8ce1462.idx" />
+      <Content Include=".git\objects\pack\pack-1a5c5236dc4dacfc7e45220af6ad2aecf8ce1462.pack" />
+      <Content Include=".git\packed-refs" />
+      <Content Include=".git\refs\heads\stable" />
+      <Content Include=".git\refs\remotes\origin\HEAD" />
+      <Content Include=".git\refs\remotes\origin\stable" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include=".git\objects\info" />
+      <Folder Include=".git\refs\tags" />
+    </ItemGroup>
+
 </Project>
